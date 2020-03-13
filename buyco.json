@@ -1,0 +1,973 @@
+openapi: 3.0.0
+info:
+  title: client/v2/container/service.proto
+  version: version not set
+paths:
+  /v2/container-snapshots/async-create:
+    post:
+      operationId: Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        $ref: '#/components/requestBodies/v2ContainerSaveRequest'
+      tags:
+        - ContainerSnapshots
+  /v2/container-snapshots/async-delete:
+    post:
+      operationId: Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2ContainerDeleteRequest'
+        required: true
+      tags:
+        - ContainerSnapshots
+  /v2/containers-snapshots/async-update:
+    post:
+      operationId: Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        $ref: '#/components/requestBodies/v2ContainerSaveRequest'
+      tags:
+        - ContainerSnapshots
+components:
+  requestBodies:
+    v2ContainerSaveRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/v2ContainerSaveRequest'
+      required: true
+  schemas:
+    pbmodelCargoData:
+      type: object
+      properties:
+        external_id:
+          type: string
+        sales_order_number:
+          type: string
+          title: The sales order number of the seller
+        purchase_order_number:
+          type: string
+          title: The purchase order number of the buyer
+        delivery_number:
+          type: string
+          title: The delivery number
+        shipment_number:
+          type: string
+          title: The shipment number
+        description:
+          type: string
+          title: A general description or any additional information
+        marks_and_numbers:
+          type: string
+          title: Marks and numbers
+        additional_references:
+          type: object
+          additionalProperties:
+            type: string
+          title: Any additional references
+      description: The contents of a container.
+    pbmodelCargoRouteDatesTimes:
+      type: object
+      properties:
+        loading_readiness:
+          $ref: '#/components/schemas/pbmodelDateOptionalTime'
+      description: Dates and times of a cargo's route milestones.
+    pbmodelContainerData:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: An external (client-side) identifier.
+        size_class:
+          $ref: '#/components/schemas/pbmodelContainerSizeClass'
+        type_class:
+          $ref: '#/components/schemas/pbmodelContainerTypeClass'
+        stuffing_reference:
+          type: string
+          title: Container stuffing reference
+        shipper_owned:
+          type: boolean
+          format: boolean
+          title: Whether the shipper owns the container
+        seals:
+          $ref: '#/components/schemas/pbmodelContainerSealNumbers'
+        measured_weight_g:
+          type: string
+          format: int64
+          description: 'Measured net weight of the container, in grams.'
+        additional_references:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Key: value pairs of additional references.'
+        grouping_rule_code:
+          type: string
+          description: >-
+            A rule code for grouping containers into shipments. The rule code
+            must already be present.
+        grade:
+          $ref: '#/components/schemas/pbmodelContainerGrade'
+        ventilation_specs:
+          $ref: '#/components/schemas/pbmodelVentilationSpecs'
+        thermal_specs:
+          $ref: '#/components/schemas/pbmodelThermalSpecs'
+        open_top_specs:
+          $ref: '#/components/schemas/pbmodelOpenTopSpecs'
+        tank_specs:
+          $ref: '#/components/schemas/pbmodelTankSpecs'
+      description: >-
+        Represents a container at various steps in the shipment process.
+
+        A container is of 'GENERAL' type unless extra specifications are
+        supplied.
+    pbmodelContainerGrade:
+      type: string
+      enum:
+        - GRADE_NOT_SET
+        - FOOD_GRADE
+      default: GRADE_NOT_SET
+      title: |-
+        - GRADE_NOT_SET: No specific grade required
+         - FOOD_GRADE: Food grade required
+    pbmodelContainerRouteDatesTimes:
+      type: object
+      properties:
+        collection:
+          $ref: '#/components/schemas/pbmodelDateTime'
+        departure:
+          $ref: '#/components/schemas/pbmodelDateOptionalTime'
+        arrival:
+          $ref: '#/components/schemas/pbmodelDateOptionalTime'
+        delivery:
+          $ref: '#/components/schemas/pbmodelDateOptionalTime'
+      title: Dates and times of a container's route milestones
+    pbmodelContainerSealNumbers:
+      type: object
+      properties:
+        carrier:
+          type: string
+        shipper:
+          type: string
+        customs:
+          type: string
+      title: Seal numbers on a container
+    pbmodelContainerSizeClass:
+      type: string
+      enum:
+        - SIZE_UNSPECIFIED
+        - SIZE_20
+        - SIZE_40
+        - SIZE_45
+        - SIZE_40HC
+        - SIZE_45HC
+        - SIZE_48HC
+        - SIZE_53HC
+      default: SIZE_UNSPECIFIED
+      description: |-
+        Simplified size representation, mapped to ISO codes internally.
+
+         - SIZE_20: 20 foot
+         - SIZE_40: 40 foot
+         - SIZE_45: 45 foot
+         - SIZE_40HC: 40 foot high cube
+         - SIZE_45HC: 45 foot high cube
+         - SIZE_48HC: 48 foot high cube
+         - SIZE_53HC: 53 foot high cube
+    pbmodelContainerTypeClass:
+      type: string
+      enum:
+        - GENERAL
+        - THERMAL
+        - OPEN_TOP
+        - TANK
+        - VENTILATED
+        - BULK
+        - PLATFORM
+        - SPECIAL
+        - AIR_SURFACE
+      default: GENERAL
+      description: |-
+        Type class, mapped to specific ISO codes internally.
+        The default is GENERAL.
+
+         - GENERAL: General purpose container (standard dry). Non-ventilated.
+         - THERMAL: Thermal container (reefer): refrigerated, heated, or insulated.
+         - OPEN_TOP: Open top, tunnel, open sides, etc
+         - TANK: Tank container
+         - VENTILATED: Ventilated dry (Coffee).
+         - BULK: Dry bulk
+         - PLATFORM: Flat platform
+         - SPECIAL: Specialty, named (i.e. animal carrier)
+         - AIR_SURFACE: Air / Surface
+    pbmodelDateOptionalTime:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int32
+          title: 4 digit year
+        month:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+        hours:
+          type: integer
+          format: int32
+        minutes:
+          type: integer
+          format: int32
+        seconds:
+          type: integer
+          format: int32
+        timezone:
+          type: string
+      description: A date with optional time and timezone.
+    pbmodelDateTime:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int32
+          title: 4 digit year
+        month:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+        hours:
+          type: integer
+          format: int32
+          title: In 24 hour format
+        minutes:
+          type: integer
+          format: int32
+        seconds:
+          type: integer
+          format: int32
+        timezone:
+          type: string
+      description: A date with time and an optional timezone.
+    pbmodelFixedDecimal:
+      type: object
+      properties:
+        units:
+          type: string
+          format: int64
+          title: Whole units part of the amount
+        nanos:
+          type: integer
+          format: int32
+          title: >-
+            Nano units of the amount (10^-9)
+
+            Must be same sign as units
+
+            Example: The value -1.25 is represented as units=-1 and
+            nanos=-250000000
+    pbmodelIncotermCode:
+      type: string
+      enum:
+        - INCOTERM_UNSPECIFIED
+        - FOB
+        - CFR
+        - FAS
+        - CIF
+        - EXW
+        - FCA
+        - CPT
+        - CIP
+        - DAP
+        - DPU
+        - DDP
+        - DAT
+        - DAF
+        - DES
+        - DEQ
+        - DDU
+      default: INCOTERM_UNSPECIFIED
+      description: |-
+        - FOB: Free On Board
+         - CFR: Cost and Freight
+         - FAS: Free Alongside Ship
+         - CIF: Cost, Insurance & Freight
+         - EXW: Ex Works
+         - FCA: Free Carrier
+         - CPT: Carriage Paid To
+         - CIP: Carriage and Insurance Paid to
+         - DAP: Delivered At Place
+         - DPU: --
+         - DDP: Delivered Duty Paid
+         - DAT: Delivered At Terminal
+         - DAF: Delivered At Frontier
+         - DES: Delivered Ex Ship
+         - DEQ: Delivered Ex Quay (duty paid)
+         - DDU: Delivered Duty Unpaid
+      title: Incoterm codes
+    pbmodelMoveType:
+      type: string
+      enum:
+        - MOVE_TYPE_UNSPECIFIED
+        - PORT
+        - DOOR
+        - RAMP
+      default: MOVE_TYPE_UNSPECIFIED
+      title: |-
+        - PORT: Port
+         - DOOR: Door (address)
+         - RAMP: Ramp
+    pbmodelOpenTopSpecs:
+      type: object
+      properties:
+        out_of_gauge_mm:
+          type: string
+          format: int64
+      description: Extra specifications for an open-top container.
+    pbmodelPackageData:
+      type: object
+      properties:
+        gross_weight_g:
+          type: string
+          format: int64
+        net_weight_g:
+          type: string
+          format: int64
+        volume_cm3:
+          type: string
+          format: int64
+        height_mm:
+          type: string
+          format: int64
+        length_mm:
+          type: string
+          format: int64
+        width_mm:
+          type: string
+          format: int64
+      description: A collection of wrapped products.
+    pbmodelPartyRole:
+      type: string
+      enum:
+        - PARTY_ROLE_UNSPECIFIED
+        - SHIPPER
+        - CONSIGNEE
+        - FORWARDER
+        - NOTIFY_1
+        - NOTIFY_2
+        - NOTIFY_3
+      default: PARTY_ROLE_UNSPECIFIED
+      description: |-
+        A party's role carries certain rights and responsibilities,
+        which depend on the model the role is applied to.
+
+         - SHIPPER: Responsible for the shipment (usually the producer or the owner of the goods).
+         - CONSIGNEE: Responsible for receiving the goods (usually the buyer of the goods).
+         - FORWARDER: Arranges transport of goods on behalf of either the seller or buyer
+         - NOTIFY_1: Responsible for arranging the arrival formalities of the vessel.
+         - NOTIFY_2: Responsible for arranging the arrival formalities of the vessel.
+         - NOTIFY_3: Responsible for arranging the arrival formalities of the vessel.
+    pbmodelPartyRoleReference:
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/pbmodelPartyRole'
+        reference:
+          type: string
+          description: The document or file reference used by the party.
+      description: >-
+        The party's role and associated reference for the entity (container,
+        shipment, etc).
+    pbmodelPhysicalContainerData:
+      type: object
+      properties:
+        iso_size_type:
+          type: string
+          title: 4 character ISO size and type code
+        identification_number:
+          type: string
+          title: Container's 11 character identification number
+        tare_weight_g:
+          type: string
+          format: int64
+          title: 'Tare (unladen) weight, in grams'
+        max_gross_weight_g:
+          type: string
+          format: int64
+          title: 'Maximum gross (laden) weight, in grams'
+      description: The actual real-world container.
+    pbmodelProductData:
+      type: object
+      properties:
+        sku:
+          type: string
+          title: Stock Keeping Unit
+        name:
+          type: string
+          title: Name / Identifier
+        harmonized_system_code:
+          type: string
+          title: Harmonized System Code
+        dangerous_goods_code:
+          type: string
+          title: UN dangerous goods code
+      description: A product.
+    pbmodelRouteBase:
+      type: object
+      properties:
+        incoterm:
+          $ref: '#/components/schemas/pbmodelRouteIncoterm'
+        pol_unlocode:
+          type: string
+          description: UN/Locode of the Port of Loading.
+        pod_unlocode:
+          type: string
+          description: UN/Locode of the Port of Discharge.
+        carrier_move_type:
+          $ref: '#/components/schemas/pbmodelRouteCarrierMoveType'
+      title: Base data for maritime routes
+    pbmodelRouteCarrierMoveType:
+      type: object
+      properties:
+        move_from:
+          $ref: '#/components/schemas/pbmodelMoveType'
+        move_to:
+          $ref: '#/components/schemas/pbmodelMoveType'
+      description: Defines which parts of the route will be handled by the carrier.
+    pbmodelRouteIncoterm:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/pbmodelIncotermCode'
+        location_unlocode:
+          type: string
+          description: The UN/Locode at which terms apply.
+        instructions:
+          type: string
+          title: Any additional instructions
+      title: Incoterm information for a route
+    pbmodelTankSpecs:
+      type: object
+      properties:
+        pressure_kpa:
+          type: integer
+          format: int32
+          title: 'Pressure requirements, in Kilopascals'
+        temperature_celsius:
+          $ref: '#/components/schemas/pbmodelFixedDecimal'
+      description: Extra specifications for a tank container.
+    pbmodelThermalSpecs:
+      type: object
+      properties:
+        ventilation_cm3_hour:
+          type: integer
+          format: int32
+        temperature_celsius:
+          $ref: '#/components/schemas/pbmodelFixedDecimal'
+        humidity_percent:
+          $ref: '#/components/schemas/pbmodelFixedDecimal'
+      description: Extra specifications for a thermal (Reefer or Heated) container.
+    pbmodelVentilationSpecs:
+      type: object
+      properties:
+        ventilation_cm3_hour:
+          type: integer
+          format: int32
+      description: Extra specifications for a ventilated dry container.
+    pbserviceAsyncResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        request_id:
+          type: string
+    protobufAny:
+      type: object
+      properties:
+        type_url:
+          type: string
+        value:
+          type: string
+          format: byte
+    runtimeError:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
+    v2CargoRoute:
+      type: object
+      properties:
+        locations:
+          $ref: '#/components/schemas/v2CargoRouteLocations'
+        dates_times:
+          $ref: '#/components/schemas/pbmodelCargoRouteDatesTimes'
+      description: Specify how to route a cargo.
+    v2CargoRouteLocations:
+      type: object
+      properties:
+        loading_place:
+          $ref: '#/components/schemas/v2RouteLocation'
+      description: Locations along the cargo's route.
+    v2CargoSnapshot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/pbmodelCargoData'
+        route:
+          $ref: '#/components/schemas/v2CargoRoute'
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2PackageSnapshot'
+          title: Packages within the cargo
+      description: A cargo links an order to physical items.
+    v2ContainerDeleteRequest:
+      type: object
+      properties:
+        external_ids:
+          type: array
+          items:
+            type: string
+    v2ContainerRoute:
+      type: object
+      properties:
+        base:
+          $ref: '#/components/schemas/pbmodelRouteBase'
+        locations:
+          $ref: '#/components/schemas/v2ContainerRouteLocations'
+        dates_times:
+          $ref: '#/components/schemas/pbmodelContainerRouteDatesTimes'
+        instructions:
+          type: string
+          description: Any additional instructions.
+      description: Specify how to route a container.
+    v2ContainerRouteLocations:
+      type: object
+      properties:
+        collection_origin:
+          $ref: '#/components/schemas/v2RouteLocation'
+        delivery_destination:
+          $ref: '#/components/schemas/v2RouteLocation'
+      description: Locations along the container's route.
+    v2ContainerSaveRequest:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2ContainerSnapshot'
+    v2ContainerSnapshot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/pbmodelContainerData'
+        physical_container:
+          $ref: '#/components/schemas/pbmodelPhysicalContainerData'
+        cargoes:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2CargoSnapshot'
+          description: The cargoes inside the container.
+        route:
+          $ref: '#/components/schemas/v2ContainerRoute'
+        parties:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Party'
+          description: The parties associated to this container.
+      description: A container and some extra information.
+    v2PackageSnapshot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/pbmodelPackageData'
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2PackagedProduct'
+    v2PackagedProduct:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          format: int32
+          description: The amount of products in the package.
+        data:
+          $ref: '#/components/schemas/pbmodelProductData'
+    v2Party:
+      type: object
+      properties:
+        organization_external_id:
+          type: string
+        person_external_id:
+          type: string
+        role_references:
+          type: array
+          items:
+            $ref: '#/components/schemas/pbmodelPartyRoleReference'
+    v2RouteLocation:
+      type: object
+      properties:
+        organization_external_id:
+          type: string
+        person_external_id:
+          type: string
+        unlocode:
+          type: string
+          title: UN/Locode
+      description: A location specification.
+
+openapi: 3.0.0
+info:
+  title: client/v2/contact/service.proto
+  version: version not set
+paths:
+  /v2/organisations/async-create:
+    post:
+      operationId: CreateOrgAsync
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        $ref: '#/components/requestBodies/v2OrganizationSaveRequest'
+      tags:
+        - Organizations
+  /v2/organisations/async-delete:
+    post:
+      operationId: DeleteOrgAsync
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2OrganizationDeleteRequest'
+        required: true
+      tags:
+        - Organizations
+  /v2/organisations/async-update:
+    post:
+      operationId: UpdateOrgAsync
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        $ref: '#/components/requestBodies/v2OrganizationSaveRequest'
+      tags:
+        - Organizations
+  /v2/persons/async-create:
+    post:
+      operationId: CreatePersonAsync
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        $ref: '#/components/requestBodies/v2PersonSaveRequest'
+      tags:
+        - Persons
+  /v2/persons/async-delete:
+    post:
+      operationId: DeletePersonAsync
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v2PersonDeleteRequest'
+        required: true
+      tags:
+        - Persons
+  /v2/persons/async-update:
+    post:
+      operationId: UpdatePersonAsync
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pbserviceAsyncResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runtimeError'
+      requestBody:
+        $ref: '#/components/requestBodies/v2PersonSaveRequest'
+      tags:
+        - Persons
+components:
+  requestBodies:
+    v2OrganizationSaveRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/v2OrganizationSaveRequest'
+      required: true
+    v2PersonSaveRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/v2PersonSaveRequest'
+      required: true
+  schemas:
+    pbmodelAddressOnBillOfLading:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        line4:
+          type: string
+        line5:
+          type: string
+      description: 'An address with short lines, suitable for use in a Bill of Lading.'
+    pbmodelOrganizationData:
+      type: object
+      properties:
+        external_id:
+          type: string
+        name:
+          type: string
+        tax_identifier:
+          type: string
+          title: Tax or VAT identifier (i.e. US EIN)
+        official_identifier:
+          type: string
+          title: Country or state identifier (i.e French SIRET)
+      description: An entity comprising of multiple people working towards a common goal.
+    pbmodelPersonData:
+      type: object
+      properties:
+        external_id:
+          type: string
+        organization_external_id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        middle_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+      description: A human being.
+    pbmodelPostalAddressData:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Address line 1, use depends on the country''s standard.'
+        line2:
+          type: string
+          title: Address line 2
+        city:
+          type: string
+          title: City name
+        postal_code:
+          type: string
+          description: Postal/Post/ZIP code. Not in use in all countries.
+        state:
+          type: string
+          description: State or province name. Not in use in all countries.
+        country_code2:
+          type: string
+          title: ISO 2 letter country code
+      description: A postal address in standard format.
+    pbserviceAsyncResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        request_id:
+          type: string
+    protobufAny:
+      type: object
+      properties:
+        type_url:
+          type: string
+        value:
+          type: string
+          format: byte
+    runtimeError:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'
+    v2Organization:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/pbmodelOrganizationData'
+        postal_address:
+          $ref: '#/components/schemas/pbmodelPostalAddressData'
+        address_on_bl:
+          type: array
+          items:
+            $ref: '#/components/schemas/pbmodelAddressOnBillOfLading'
+    v2OrganizationDeleteRequest:
+      type: object
+      properties:
+        external_ids:
+          type: array
+          items:
+            type: string
+      title: Delete
+    v2OrganizationSaveRequest:
+      type: object
+      properties:
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Organization'
+      title: Save
+    v2Person:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/pbmodelPersonData'
+    v2PersonDeleteRequest:
+      type: object
+      properties:
+        external_ids:
+          type: array
+          items:
+            type: string
+      title: Delete
+    v2PersonSaveRequest:
+      type: object
+      properties:
+        persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/v2Person'
+      title: Save
+

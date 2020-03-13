@@ -1,0 +1,473 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "client/v2/contact/service.proto",
+        "version": "version not set"
+    },
+    "paths": {
+        "/v2/organisations/async-create": {
+            "post": {
+                "operationId": "CreateOrgAsync",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pbserviceAsyncResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/runtimeError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/v2OrganizationSaveRequest"
+                },
+                "tags": [
+                    "Organizations"
+                ]
+            }
+        },
+        "/v2/organisations/async-delete": {
+            "post": {
+                "operationId": "DeleteOrgAsync",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pbserviceAsyncResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/runtimeError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/v2OrganizationDeleteRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Organizations"
+                ]
+            }
+        },
+        "/v2/organisations/async-update": {
+            "post": {
+                "operationId": "UpdateOrgAsync",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pbserviceAsyncResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/runtimeError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/v2OrganizationSaveRequest"
+                },
+                "tags": [
+                    "Organizations"
+                ]
+            }
+        },
+        "/v2/persons/async-create": {
+            "post": {
+                "operationId": "CreatePersonAsync",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pbserviceAsyncResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/runtimeError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/v2PersonSaveRequest"
+                },
+                "tags": [
+                    "Persons"
+                ]
+            }
+        },
+        "/v2/persons/async-delete": {
+            "post": {
+                "operationId": "DeletePersonAsync",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pbserviceAsyncResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/runtimeError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/v2PersonDeleteRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Persons"
+                ]
+            }
+        },
+        "/v2/persons/async-update": {
+            "post": {
+                "operationId": "UpdatePersonAsync",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pbserviceAsyncResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/runtimeError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/v2PersonSaveRequest"
+                },
+                "tags": [
+                    "Persons"
+                ]
+            }
+        }
+    },
+    "components": {
+        "requestBodies": {
+            "v2OrganizationSaveRequest": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/v2OrganizationSaveRequest"
+                        }
+                    }
+                },
+                "required": true
+            },
+            "v2PersonSaveRequest": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/v2PersonSaveRequest"
+                        }
+                    }
+                },
+                "required": true
+            }
+        },
+        "schemas": {
+            "pbmodelAddressOnBillOfLading": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "line1": {
+                        "type": "string"
+                    },
+                    "line2": {
+                        "type": "string"
+                    },
+                    "line3": {
+                        "type": "string"
+                    },
+                    "line4": {
+                        "type": "string"
+                    },
+                    "line5": {
+                        "type": "string"
+                    }
+                },
+                "description": "An address with short lines, suitable for use in a Bill of Lading."
+            },
+            "pbmodelOrganizationData": {
+                "type": "object",
+                "properties": {
+                    "external_id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "tax_identifier": {
+                        "type": "string",
+                        "title": "Tax or VAT identifier (i.e. US EIN)"
+                    },
+                    "official_identifier": {
+                        "type": "string",
+                        "title": "Country or state identifier (i.e French SIRET)"
+                    }
+                },
+                "description": "An entity comprising of multiple people working towards a common goal."
+            },
+            "pbmodelPersonData": {
+                "type": "object",
+                "properties": {
+                    "external_id": {
+                        "type": "string"
+                    },
+                    "organization_external_id": {
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "middle_name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    }
+                },
+                "description": "A human being."
+            },
+            "pbmodelPostalAddressData": {
+                "type": "object",
+                "properties": {
+                    "line1": {
+                        "type": "string",
+                        "description": "Address line 1, use depends on the country's standard."
+                    },
+                    "line2": {
+                        "type": "string",
+                        "title": "Address line 2"
+                    },
+                    "city": {
+                        "type": "string",
+                        "title": "City name"
+                    },
+                    "postal_code": {
+                        "type": "string",
+                        "description": "Postal/Post/ZIP code. Not in use in all countries."
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State or province name. Not in use in all countries."
+                    },
+                    "country_code2": {
+                        "type": "string",
+                        "title": "ISO 2 letter country code"
+                    }
+                },
+                "description": "A postal address in standard format."
+            },
+            "pbserviceAsyncResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "request_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "protobufAny": {
+                "type": "object",
+                "properties": {
+                    "type_url": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string",
+                        "format": "byte"
+                    }
+                }
+            },
+            "runtimeError": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "details": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/protobufAny"
+                        }
+                    }
+                }
+            },
+            "v2Organization": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/pbmodelOrganizationData"
+                    },
+                    "postal_address": {
+                        "$ref": "#/components/schemas/pbmodelPostalAddressData"
+                    },
+                    "address_on_bl": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/pbmodelAddressOnBillOfLading"
+                        }
+                    }
+                }
+            },
+            "v2OrganizationDeleteRequest": {
+                "type": "object",
+                "properties": {
+                    "external_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "title": "Delete"
+            },
+            "v2OrganizationSaveRequest": {
+                "type": "object",
+                "properties": {
+                    "organizations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/v2Organization"
+                        }
+                    }
+                },
+                "title": "Save"
+            },
+            "v2Person": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/pbmodelPersonData"
+                    }
+                }
+            },
+            "v2PersonDeleteRequest": {
+                "type": "object",
+                "properties": {
+                    "external_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "title": "Delete"
+            },
+            "v2PersonSaveRequest": {
+                "type": "object",
+                "properties": {
+                    "persons": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/v2Person"
+                        }
+                    }
+                },
+                "title": "Save"
+            }
+        }
+    }
+}
