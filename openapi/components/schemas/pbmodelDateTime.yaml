@@ -1,0 +1,25 @@
+type: object
+properties:
+  year:
+    type: integer
+    format: int32
+    title: 4 digit year
+  month:
+    type: integer
+    format: int32
+  day:
+    type: integer
+    format: int32
+  hours:
+    type: integer
+    format: int32
+    title: In 24 hour format
+  minutes:
+    type: integer
+    format: int32
+  seconds:
+    type: integer
+    format: int32
+  timezone:
+    type: string
+description: A date with time and an optional timezone.

@@ -1,0 +1,10 @@
+type: object
+properties:
+  ventilation_cm3_hour:
+    type: integer
+    format: int32
+  temperature_celsius:
+    $ref: '#/components/schemas/pbmodelFixedDecimal'
+  humidity_percent:
+    $ref: '#/components/schemas/pbmodelFixedDecimal'
+description: Extra specifications for a thermal (Reefer or Heated) container.

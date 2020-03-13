@@ -1,0 +1,6 @@
+type: object
+properties:
+  out_of_gauge_mm:
+    type: string
+    format: int64
+description: Extra specifications for an open-top container.

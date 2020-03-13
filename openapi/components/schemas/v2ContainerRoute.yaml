@@ -1,0 +1,12 @@
+type: object
+properties:
+  base:
+    $ref: '#/components/schemas/pbmodelRouteBase'
+  locations:
+    $ref: '#/components/schemas/v2ContainerRouteLocations'
+  dates_times:
+    $ref: '#/components/schemas/pbmodelContainerRouteDatesTimes'
+  instructions:
+    type: string
+    description: Any additional instructions.
+description: Specify how to route a container.

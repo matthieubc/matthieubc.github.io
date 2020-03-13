@@ -1,0 +1,11 @@
+type: object
+properties:
+  code:
+    $ref: '#/components/schemas/pbmodelIncotermCode'
+  location_unlocode:
+    type: string
+    description: The UN/Locode at which terms apply.
+  instructions:
+    type: string
+    title: Any additional instructions
+title: Incoterm information for a route

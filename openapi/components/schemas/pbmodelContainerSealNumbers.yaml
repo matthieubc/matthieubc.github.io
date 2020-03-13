@@ -1,0 +1,9 @@
+type: object
+properties:
+  carrier:
+    type: string
+  shipper:
+    type: string
+  customs:
+    type: string
+title: Seal numbers on a container

@@ -1,0 +1,28 @@
+type: object
+properties:
+  external_id:
+    type: string
+  sales_order_number:
+    type: string
+    title: The sales order number of the seller
+  purchase_order_number:
+    type: string
+    title: The purchase order number of the buyer
+  delivery_number:
+    type: string
+    title: The delivery number
+  shipment_number:
+    type: string
+    title: The shipment number
+  description:
+    type: string
+    title: A general description or any additional information
+  marks_and_numbers:
+    type: string
+    title: Marks and numbers
+  additional_references:
+    type: object
+    additionalProperties:
+      type: string
+    title: Any additional references
+description: The contents of a container.

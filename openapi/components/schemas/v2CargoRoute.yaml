@@ -1,0 +1,7 @@
+type: object
+properties:
+  locations:
+    $ref: '#/components/schemas/v2CargoRouteLocations'
+  dates_times:
+    $ref: '#/components/schemas/pbmodelCargoRouteDatesTimes'
+description: Specify how to route a cargo.

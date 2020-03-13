@@ -1,0 +1,7 @@
+type: object
+properties:
+  collection_origin:
+    $ref: '#/components/schemas/v2RouteLocation'
+  delivery_destination:
+    $ref: '#/components/schemas/v2RouteLocation'
+description: Locations along the container's route.

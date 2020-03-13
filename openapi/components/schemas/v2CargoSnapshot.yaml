@@ -1,0 +1,12 @@
+type: object
+properties:
+  data:
+    $ref: '#/components/schemas/pbmodelCargoData'
+  route:
+    $ref: '#/components/schemas/v2CargoRoute'
+  packages:
+    type: array
+    items:
+      $ref: '#/components/schemas/v2PackageSnapshot'
+    title: Packages within the cargo
+description: A cargo links an order to physical items.

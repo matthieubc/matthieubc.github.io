@@ -1,0 +1,15 @@
+type: object
+properties:
+  sku:
+    type: string
+    title: Stock Keeping Unit
+  name:
+    type: string
+    title: Name / Identifier
+  harmonized_system_code:
+    type: string
+    title: Harmonized System Code
+  dangerous_goods_code:
+    type: string
+    title: UN dangerous goods code
+description: A product.

@@ -1,0 +1,13 @@
+type: object
+properties:
+  units:
+    type: string
+    format: int64
+    title: Whole units part of the amount
+  nanos:
+    type: integer
+    format: int32
+    title: |-
+      Nano units of the amount (10^-9)
+      Must be same sign as units
+      Example: The value -1.25 is represented as units=-1 and nanos=-250000000

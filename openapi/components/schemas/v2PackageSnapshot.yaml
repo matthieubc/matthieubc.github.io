@@ -1,0 +1,8 @@
+type: object
+properties:
+  data:
+    $ref: '#/components/schemas/pbmodelPackageData'
+  products:
+    type: array
+    items:
+      $ref: '#/components/schemas/v2PackagedProduct'

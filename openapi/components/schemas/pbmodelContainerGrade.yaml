@@ -1,0 +1,8 @@
+type: string
+enum:
+  - GRADE_NOT_SET
+  - FOOD_GRADE
+default: GRADE_NOT_SET
+title: |-
+  - GRADE_NOT_SET: No specific grade required
+   - FOOD_GRADE: Food grade required

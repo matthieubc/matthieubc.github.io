@@ -1,0 +1,19 @@
+type: object
+properties:
+  data:
+    $ref: '#/components/schemas/pbmodelContainerData'
+  physical_container:
+    $ref: '#/components/schemas/pbmodelPhysicalContainerData'
+  cargoes:
+    type: array
+    items:
+      $ref: '#/components/schemas/v2CargoSnapshot'
+    description: The cargoes inside the container.
+  route:
+    $ref: '#/components/schemas/v2ContainerRoute'
+  parties:
+    type: array
+    items:
+      $ref: '#/components/schemas/v2Party'
+    description: The parties associated to this container.
+description: A container and some extra information.

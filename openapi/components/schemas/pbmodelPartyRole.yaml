@@ -1,0 +1,20 @@
+type: string
+enum:
+  - PARTY_ROLE_UNSPECIFIED
+  - SHIPPER
+  - CONSIGNEE
+  - FORWARDER
+  - NOTIFY_1
+  - NOTIFY_2
+  - NOTIFY_3
+default: PARTY_ROLE_UNSPECIFIED
+description: |-
+  A party's role carries certain rights and responsibilities,
+  which depend on the model the role is applied to.
+
+   - SHIPPER: Responsible for the shipment (usually the producer or the owner of the goods).
+   - CONSIGNEE: Responsible for receiving the goods (usually the buyer of the goods).
+   - FORWARDER: Arranges transport of goods on behalf of either the seller or buyer
+   - NOTIFY_1: Responsible for arranging the arrival formalities of the vessel.
+   - NOTIFY_2: Responsible for arranging the arrival formalities of the vessel.
+   - NOTIFY_3: Responsible for arranging the arrival formalities of the vessel.

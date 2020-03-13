@@ -1,0 +1,6 @@
+type: object
+properties:
+  ventilation_cm3_hour:
+    type: integer
+    format: int32
+description: Extra specifications for a ventilated dry container.

@@ -1,0 +1,21 @@
+type: string
+enum:
+  - SIZE_UNSPECIFIED
+  - SIZE_20
+  - SIZE_40
+  - SIZE_45
+  - SIZE_40HC
+  - SIZE_45HC
+  - SIZE_48HC
+  - SIZE_53HC
+default: SIZE_UNSPECIFIED
+description: |-
+  Simplified size representation, mapped to ISO codes internally.
+
+   - SIZE_20: 20 foot
+   - SIZE_40: 40 foot
+   - SIZE_45: 45 foot
+   - SIZE_40HC: 40 foot high cube
+   - SIZE_45HC: 45 foot high cube
+   - SIZE_48HC: 48 foot high cube
+   - SIZE_53HC: 53 foot high cube

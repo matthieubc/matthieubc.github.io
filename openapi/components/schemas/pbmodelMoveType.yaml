@@ -1,0 +1,11 @@
+type: string
+enum:
+  - MOVE_TYPE_UNSPECIFIED
+  - PORT
+  - DOOR
+  - RAMP
+default: MOVE_TYPE_UNSPECIFIED
+title: |-
+  - PORT: Port
+   - DOOR: Door (address)
+   - RAMP: Ramp

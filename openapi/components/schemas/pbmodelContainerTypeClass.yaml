@@ -1,0 +1,25 @@
+type: string
+enum:
+  - GENERAL
+  - THERMAL
+  - OPEN_TOP
+  - TANK
+  - VENTILATED
+  - BULK
+  - PLATFORM
+  - SPECIAL
+  - AIR_SURFACE
+default: GENERAL
+description: |-
+  Type class, mapped to specific ISO codes internally.
+  The default is GENERAL.
+
+   - GENERAL: General purpose container (standard dry). Non-ventilated.
+   - THERMAL: Thermal container (reefer): refrigerated, heated, or insulated.
+   - OPEN_TOP: Open top, tunnel, open sides, etc
+   - TANK: Tank container
+   - VENTILATED: Ventilated dry (Coffee).
+   - BULK: Dry bulk
+   - PLATFORM: Flat platform
+   - SPECIAL: Specialty, named (i.e. animal carrier)
+   - AIR_SURFACE: Air / Surface

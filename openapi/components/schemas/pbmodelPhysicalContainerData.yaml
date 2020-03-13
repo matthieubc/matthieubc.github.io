@@ -1,0 +1,17 @@
+type: object
+properties:
+  iso_size_type:
+    type: string
+    title: 4 character ISO size and type code
+  identification_number:
+    type: string
+    title: Container's 11 character identification number
+  tare_weight_g:
+    type: string
+    format: int64
+    title: 'Tare (unladen) weight, in grams'
+  max_gross_weight_g:
+    type: string
+    format: int64
+    title: 'Maximum gross (laden) weight, in grams'
+description: The actual real-world container.

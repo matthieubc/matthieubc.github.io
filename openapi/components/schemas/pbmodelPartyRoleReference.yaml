@@ -1,0 +1,10 @@
+type: object
+properties:
+  role:
+    $ref: '#/components/schemas/pbmodelPartyRole'
+  reference:
+    type: string
+    description: The document or file reference used by the party.
+description: >-
+  The party's role and associated reference for the entity (container, shipment,
+  etc).

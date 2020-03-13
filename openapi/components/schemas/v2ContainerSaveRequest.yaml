@@ -1,0 +1,6 @@
+type: object
+properties:
+  containers:
+    type: array
+    items:
+      $ref: '#/components/schemas/v2ContainerSnapshot'

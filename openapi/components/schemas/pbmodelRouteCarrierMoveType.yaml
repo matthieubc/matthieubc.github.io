@@ -1,0 +1,7 @@
+type: object
+properties:
+  move_from:
+    $ref: '#/components/schemas/pbmodelMoveType'
+  move_to:
+    $ref: '#/components/schemas/pbmodelMoveType'
+description: Defines which parts of the route will be handled by the carrier.

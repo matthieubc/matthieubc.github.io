@@ -1,0 +1,8 @@
+type: object
+properties:
+  quantity:
+    type: integer
+    format: int32
+    description: The amount of products in the package.
+  data:
+    $ref: '#/components/schemas/pbmodelProductData'

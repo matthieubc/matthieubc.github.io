@@ -1,0 +1,10 @@
+type: object
+properties:
+  organization_external_id:
+    type: string
+  person_external_id:
+    type: string
+  role_references:
+    type: array
+    items:
+      $ref: '#/components/schemas/pbmodelPartyRoleReference'

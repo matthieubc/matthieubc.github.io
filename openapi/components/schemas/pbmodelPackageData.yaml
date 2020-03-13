@@ -1,0 +1,21 @@
+type: object
+properties:
+  gross_weight_g:
+    type: string
+    format: int64
+  net_weight_g:
+    type: string
+    format: int64
+  volume_cm3:
+    type: string
+    format: int64
+  height_mm:
+    type: string
+    format: int64
+  length_mm:
+    type: string
+    format: int64
+  width_mm:
+    type: string
+    format: int64
+description: A collection of wrapped products.

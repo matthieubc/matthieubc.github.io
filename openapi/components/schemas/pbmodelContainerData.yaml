@@ -1,0 +1,45 @@
+type: object
+properties:
+  external_id:
+    type: string
+    description: An external (client-side) identifier.
+  size_class:
+    $ref: '#/components/schemas/pbmodelContainerSizeClass'
+  type_class:
+    $ref: '#/components/schemas/pbmodelContainerTypeClass'
+  stuffing_reference:
+    type: string
+    title: Container stuffing reference
+  shipper_owned:
+    type: boolean
+    format: boolean
+    title: Whether the shipper owns the container
+  seals:
+    $ref: '#/components/schemas/pbmodelContainerSealNumbers'
+  measured_weight_g:
+    type: string
+    format: int64
+    description: 'Measured net weight of the container, in grams.'
+  additional_references:
+    type: object
+    additionalProperties:
+      type: string
+    description: 'Key: value pairs of additional references.'
+  grouping_rule_code:
+    type: string
+    description: >-
+      A rule code for grouping containers into shipments. The rule code must
+      already be present.
+  grade:
+    $ref: '#/components/schemas/pbmodelContainerGrade'
+  ventilation_specs:
+    $ref: '#/components/schemas/pbmodelVentilationSpecs'
+  thermal_specs:
+    $ref: '#/components/schemas/pbmodelThermalSpecs'
+  open_top_specs:
+    $ref: '#/components/schemas/pbmodelOpenTopSpecs'
+  tank_specs:
+    $ref: '#/components/schemas/pbmodelTankSpecs'
+description: |-
+  Represents a container at various steps in the shipment process.
+  A container is of 'GENERAL' type unless extra specifications are supplied.

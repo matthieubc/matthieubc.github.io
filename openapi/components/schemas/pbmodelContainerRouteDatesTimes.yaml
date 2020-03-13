@@ -1,0 +1,11 @@
+type: object
+properties:
+  collection:
+    $ref: '#/components/schemas/pbmodelDateTime'
+  departure:
+    $ref: '#/components/schemas/pbmodelDateOptionalTime'
+  arrival:
+    $ref: '#/components/schemas/pbmodelDateOptionalTime'
+  delivery:
+    $ref: '#/components/schemas/pbmodelDateOptionalTime'
+title: Dates and times of a container's route milestones

@@ -1,0 +1,38 @@
+type: string
+enum:
+  - INCOTERM_UNSPECIFIED
+  - FOB
+  - CFR
+  - FAS
+  - CIF
+  - EXW
+  - FCA
+  - CPT
+  - CIP
+  - DAP
+  - DPU
+  - DDP
+  - DAT
+  - DAF
+  - DES
+  - DEQ
+  - DDU
+default: INCOTERM_UNSPECIFIED
+description: |-
+  - FOB: Free On Board
+   - CFR: Cost and Freight
+   - FAS: Free Alongside Ship
+   - CIF: Cost, Insurance & Freight
+   - EXW: Ex Works
+   - FCA: Free Carrier
+   - CPT: Carriage Paid To
+   - CIP: Carriage and Insurance Paid to
+   - DAP: Delivered At Place
+   - DPU: --
+   - DDP: Delivered Duty Paid
+   - DAT: Delivered At Terminal
+   - DAF: Delivered At Frontier
+   - DES: Delivered Ex Ship
+   - DEQ: Delivered Ex Quay (duty paid)
+   - DDU: Delivered Duty Unpaid
+title: Incoterm codes

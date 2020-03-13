@@ -1,0 +1,9 @@
+type: object
+properties:
+  pressure_kpa:
+    type: integer
+    format: int32
+    title: 'Pressure requirements, in Kilopascals'
+  temperature_celsius:
+    $ref: '#/components/schemas/pbmodelFixedDecimal'
+description: Extra specifications for a tank container.

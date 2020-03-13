@@ -1,0 +1,10 @@
+type: object
+properties:
+  organization_external_id:
+    type: string
+  person_external_id:
+    type: string
+  unlocode:
+    type: string
+    title: UN/Locode
+description: A location specification.

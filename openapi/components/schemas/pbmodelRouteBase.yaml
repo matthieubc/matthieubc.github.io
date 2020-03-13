@@ -1,0 +1,13 @@
+type: object
+properties:
+  incoterm:
+    $ref: '#/components/schemas/pbmodelRouteIncoterm'
+  pol_unlocode:
+    type: string
+    description: UN/Locode of the Port of Loading.
+  pod_unlocode:
+    type: string
+    description: UN/Locode of the Port of Discharge.
+  carrier_move_type:
+    $ref: '#/components/schemas/pbmodelRouteCarrierMoveType'
+title: Base data for maritime routes

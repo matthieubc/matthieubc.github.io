@@ -1,0 +1,5 @@
+type: object
+properties:
+  loading_place:
+    $ref: '#/components/schemas/v2RouteLocation'
+description: Locations along the cargo's route.

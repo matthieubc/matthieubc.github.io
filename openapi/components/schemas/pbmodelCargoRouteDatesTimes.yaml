@@ -1,0 +1,5 @@
+type: object
+properties:
+  loading_readiness:
+    $ref: '#/components/schemas/pbmodelDateOptionalTime'
+description: Dates and times of a cargo's route milestones.
